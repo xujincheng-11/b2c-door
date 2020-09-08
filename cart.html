@@ -69,7 +69,7 @@
                                 <li class="yui3-u-1-8"><span style="line-height:70px " class="sum">{{b2c.formatPrice(cart.price*cart.num)}}</span></li>
                                 <li class="yui3-u-1-8">
                                     <a href="#none" @click="deleteCart(i)">删除</a><br />
-                                    <a href="#none">移到我的关注</a>
+                                    <a href="#none"  @click="focus(cart.spuId,i)">移到我的关注</a>
                                 </li>
                             </ul>
                         </div>
@@ -364,6 +364,10 @@
                     this.cartList.splice(i, 1);//从i下标开始，删除1个元素
                     b2c.store.set("cartList",this.cartList);
                 })
+            },focus(skuId,i){
+                console.log(skuId+"ss"+i);
+                b2c.http.post("item/spec/addCollect/"+skuId).then();
+                this.deleteCart(i);
             },
             toOrderInfo(){//购物车商品结算
                     if(this.cartList.length == 0){

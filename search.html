@@ -267,7 +267,7 @@
                             <div class="operate">
                                 <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
                                 <a href="javascript:void(0);" class="sui-btn btn-bordered">对比</a>
-                                <a href="javascript:void(0);" class="sui-btn btn-bordered">关注</a>
+                                <a href="javascript:void(0);" class="sui-btn btn-bordered" @click="attGood(goods.selected)">关注</a>
                             </div>
                         </div>
                     </li>
@@ -545,7 +545,10 @@
                     searchTemp.filter[key]=obj.name;
                 }
                 this.search=searchTemp;
-            },
+            },attGood(selected){
+            console.log(selected.id)
+            b2c.http.post("item/spec/addCollect/"+selected.id).then()
+        },
             getFilterValue(key ,value ){//面包屑处理; 品牌(key):brandId(value)
                 let filterValue="";
                 // 由于页面刷新的问题，有可能重复调用，所以需要判断，页面过滤条件刷否有值
